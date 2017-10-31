@@ -1,0 +1,226 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<!--
+  Spectral by HTML5 UP
+  html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Live Weather</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="static/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <script src="https://cdn.anychart.com/releases/8.0.1/js/anychart-base.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.0.1/js/anychart-ui.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.0.1/js/anychart-exports.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.0.1/js/anychart-circular-gauge.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.anychart.com/releases/8.0.1/css/anychart-ui.min.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="static/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href="static/css/ie9.css" /><![endif]-->
+
+  <script type="text/javascript">
+anychart.onDocumentReady(function() {
+  gauge = anychart.gauges.circular();
+  gauge.fill('#fff')
+    .stroke(null)
+    .padding(0)
+    .margin(30)
+    .startAngle(0)
+    .sweepAngle(360);
+
+  gauge.axis().labels()
+    .padding(3)
+    .position('outside')
+    .format(function(){
+        var value = this.value;
+        if (value === 0)
+            {value = 'N';}
+        else if (value ===270)
+            {value = 'E';}
+        else if (value ===180)
+            {value = 'S';}
+        else if (value ===90)
+            {value = 'W';}
+        else{
+            value ='';}
+        return value
+        })
+
+  gauge.data([{{ wind_direction }}, 2]);
+
+  gauge.axis().scale()
+    .minimum(0)
+    .maximum(360)
+    .ticks({
+      interval: 30
+    })
+    .minorTicks({
+      interval: 10
+    });
+
+  gauge.axis()
+    .fill('#7c868e')
+    .startAngle(0)
+    .sweepAngle(-360)
+    .width(1)
+    .ticks({
+      type: 'line',
+      fill: '#7c868e',
+      length: 4,
+      position: 'outside'
+    });
+
+  gauge.axis(1)
+    .fill('#7c868e')
+    .startAngle(270)
+    .radius(40)
+    .sweepAngle(180)
+    .width(1)
+    .ticks({
+      type: 'line',
+      fill: '#7c868e',
+      length: 4,
+      position: 'outside'
+    });
+
+  gauge.axis(1).labels()
+    .padding(3)
+    .position('outside')
+    .format('{%Value} m/s');
+
+  gauge.axis(1).scale()
+    .minimum(0)
+    .maximum(25)
+    .ticks({
+      interval: 5
+    })
+    .minorTicks({
+      interval: 1
+    });
+
+  gauge.title()
+    .padding(0)
+    .margin([0, 0, 10, 0]);
+
+  gauge.marker()
+    .fill('#64b5f6')
+    .stroke(null)
+    .size('15%')
+    .zIndex(120)
+    .radius('97%');
+
+  gauge.needle()
+    .fill('#1976d2')
+    .stroke(null)
+    .axisIndex(1)
+    .startRadius('6%')
+    .endRadius('38%')
+    .startWidth('2%')
+    .middleWidth(null)
+    .endWidth('0');
+
+  gauge.cap()
+    .radius('4%')
+    .fill('#1976d2')
+    .enabled(true)
+    .stroke(null);
+
+  var bigTooltipTitleSettings = {
+    fontFamily: "'Verdana', Helvetica, Arial, sans-serif",
+    fontWeight: 'normal',
+    fontSize: '12px',
+    hAlign: 'left',
+    fontColor: '#212121'
+  };
+
+
+  // set container id for the chart
+  gauge.container('container');
+
+  // initiate chart drawing
+  gauge.draw();
+});
+    </script>
+  </head>
+  <body>
+
+    <!-- Page Wrapper -->
+      <div id="page-wrapper">
+
+        <!-- Header -->
+          <header id="header">
+            <h1><a href="index.html">Andrew Martin</a></h1>
+            <nav id="nav">
+              <ul>
+                <li class="special">
+                  <a href="#menu" class="menuToggle"><span>Menu</span></a>
+                  <div id="menu">
+                    <ul>
+                      <li><a href="index.html">Home</a></li>
+                      <li><a href="sensors.html">Smart Sensors</a></li>
+                      <li><a href="weather.html">Weather</a></li>
+                      <li><a href="research.html">Research outputs</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </nav>
+          </header>
+
+        <!-- Main -->
+          <article id="main">
+            <header>
+              <h2>Live Weather</h2>
+            </header>
+            <section class="wrapper style5">
+              <div class="inner">
+                <h3>Temperature</h3>
+                <p>
+                The temperature in Dunedin is <b style="color:red">{{ temperature }} &deg;C </b>
+                </p>
+              </div>
+              <div class="inner">
+                <h3>Wind</h3>
+              <div id="container" style="width: 500px; height: 300px;"></div>
+                Wind speed {{ wind_speed }} and direction {{ wind_direction }}
+              </div>
+            </section>
+          </article>
+
+        <!-- Footer -->
+          <footer id="footer">
+            <ul class="icons">
+              <li><a href="https://github.com/andrewmartin001" class="icon fa-github"><span class="label">Github</span></a></li>
+              <li><a href="https://www.linkedin.com/in/andrew-martin-a7126b57/" class="icon fa-linkedin"><span class="label">Twitter</span></a></li>
+              <li><a href="https://twitter.com/andrewdmartin1" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+              <!--<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li> -->
+              <!--<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li> -->
+              <li><a href="mailto:andrew.d.martin@ntlworld.com" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+            </ul>
+            <ul class="copyright">
+              <li>&copy; Andrew Martin 2017</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+          </footer>
+
+      </div>
+
+    <!-- Scripts -->
+      <!-- <script src="static/js/jquery.min.js"></script>-->
+      <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+      <!-- <script src="static/js/jquery.scrollex.min.js"></script>-->
+      <script type="text/javascript" src="{% static 'js/jquery.scrollex.min.js' %}"></script>
+      <!--<script src="static/js/jquery.scrolly.min.js"></script>-->
+      <script type="text/javascript" src="{% static 'js/jquery.scrolly.min.js' %}"></script>
+      <!--<script src="static/js/skel.min.js"></script>-->
+      <script type="text/javascript" src="{% static 'js/skel.min.js' %}"></script>
+      <!--<script src="static/js/util.js"></script>-->
+      <script type="text/javascript" src="{% static 'js/util.js' %}"></script>
+      <!--[if lte IE 8]><script src="static/js/ie/respond.min.js"></script><![endif]-->
+      <!--<script src="static/js/main.js"></script>-->
+      <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+
+  </body>
+</html>
+
