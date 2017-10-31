@@ -11,4 +11,9 @@ def get_current_data():
 
 if __name__ == '__main__':
   data = get_current_data()
-  print 't=', data[2]
+  print 't=', data[10]
+  print data[10] == 'North-East'
+  print len(data[10])
+  print len(data[10].strip())
+  print 'North'
+  print data[10].strip()=='North'
