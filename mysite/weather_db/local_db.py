@@ -36,3 +36,20 @@ def get_temperatures_between_times(time_start, time_end):
     db.close()
   return results
 
+def get_all_temperatures():
+  '''queries local database for temperatures and measurement times'''
+  try:
+    db = sqlite3.connect(db_path)
+    cursor = db.cursor()
+    cursor.execute('SELECT temperature, measurement_time FROM temperature_measurements')
+    results = cursor.fetchall()
+  except Exception as e:
+    db.rollback()
+    print e
+    raise e
+  finally:
+    db.close()
+  return results
+
+if __name__=='__main__':
+  print get_all_temperatures()
