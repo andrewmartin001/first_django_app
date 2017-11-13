@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Dunedin Weather Data</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">Andrew Martin</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="sensors.html">Smart Sensors</a></li>
+											<li><a href="weather.html">Weather</a></li>
+											<li><a href="research.html">Research outputs</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<article id="main">
+						<header>
+							<h2>Dunedin Weather Data</h2>
+							<p>Data scraped from the Otago Uni weather station</p>
+						</header>
+						<section class="wrapper style5">
+							<div class="inner">
+								<h3>Overview</h3>
+								<p>The University of Otago physics department publishes <a href="http://www.physics.otago.ac.nz/eman/weather_station/archive.php">online</a> its weather data gathered since 2002. I have written some python to scrape this data from the web and make some interesting plots to see if the data tells us something about general trends. The code is available in <a href="https://github.com/andrewmartin001/WeatherScraper">Github</a> for those interested in playing with the data themselves.</p>
+								<h3>Temperatures to date</h3>
+								<p>Firstly, here is the temperature in Dunedin from the start of 2017 until the end of September. The plot is interactive so you can zoom in to a paricular region of interest if you want to know what the weather was like on that day.</p>
+<iframe width="100%" height="500" frameborder="0" scrolling="no" src="https://plot.ly/~andrewmartin001/8.embed?link=false"></iframe>
+
+								<h3>Yearly average temperature</h3>
+								<p>Climate science tells us that the global yearly average temperature is increasing in general (over timescales of many years). From our data we can detect an increase in Dunedin temperatures between 2002 and 2016. (Although I would be careful from extrapolating too much from the small number of years from one location.) The slope of the fit has a p-value of around 0.01, meaning that if there were actually no trend one would find such a slope (or greater) by chance 1 percent of the time. This is usually deemed an acceptable risk of a false positive in a statistical test.</p>
+<iframe width="100%" height="500"  frameborder="0" scrolling="no" src="https://plot.ly/~andrewmartin001/10.embed?link=false"></iframe>
+								<h3>Total rainfall</h3>
+								<p>The chart below shows the rainfall since 2003 (the rainfall records in 2002 were somehow corrupted). Each bar represents one day's worth of rain. After 2009 there seem to be occasional days with more than 50 mm rain which were not seen before. The large spike in June 2015 is on the day of Dunedin's <a href="https://www.odt.co.nz/news/dunedin/one-100-year-flood">one in 100 year flood </a>. </p>
+<iframe width="100%" height="500" frameborder="0" scrolling="no" src="https://plot.ly/~andrewmartin001/14.embed?link=false"></iframe>
+							</div>
+						</section>
+					</article>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<li><a href="https://github.com/andrewmartin001" class="icon fa-github"><span class="label">Github</span></a></li>
+							<li><a href="https://www.linkedin.com/in/andrew-martin-a7126b57/" class="icon fa-linkedin"><span class="label">Twitter</span></a></li>
+							<li><a href="https://twitter.com/andrewdmartin1" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<!--<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li> -->
+							<!--<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li> -->
+							<li><a href="mailto:andrew.d.martin@ntlworld.com" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+						</ul>
+						<ul class="copyright">
+							<li>&copy; Andrew Martin 2017</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
