@@ -9,9 +9,9 @@ from get_current_data import get_current_data
 from django.http import HttpResponse
 from polls.utils import compass_to_degrees
 
-def index(request):
-  temperature = get_current_data()[2]
-  return HttpResponse("The current temperature is " + temperature + "&deg;C")
+#def index(request):
+#  temperature = get_current_data()[2]
+#  return HttpResponse("The current temperature is " + temperature + "&deg;C")
 
 def liveweather(request):
   temperature = get_current_data()[2]
@@ -24,6 +24,8 @@ def liveweather2(request):
   wind_direction = compass_to_degrees(wind_direction)
   return render(request, 'polls/liveweather2.html', {'temperature': temperature, 'wind_speed': wind_speed, 'wind_direction': wind_direction})
 
+def index(request):
+  return render(request, 'polls/index.html')
 def detail(request, question_id):
   return HttpResponse("You're looking at question %s." % question_id)
 
