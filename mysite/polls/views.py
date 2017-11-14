@@ -33,6 +33,9 @@ def sensors(request):
 def research(request):
   return render(request, 'polls/research.html')
 
+def weather(request):
+  return render(request, 'polls/weather.html')
+
 def detail(request, question_id):
   return HttpResponse("You're looking at question %s." % question_id)
 
