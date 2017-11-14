@@ -30,6 +30,9 @@ def index(request):
 def sensors(request):
   return render(request, 'polls/sensors.html')
 
+def research(request):
+  return render(request, 'polls/research.html')
+
 def detail(request, question_id):
   return HttpResponse("You're looking at question %s." % question_id)
 
